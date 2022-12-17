@@ -1,12 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutterblocecom/screens/screens_shelf.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
+  final bool automaticallyImplyLeading;
+
   const CustomAppBar({
     Key? key,
     required this.title,
+    this.automaticallyImplyLeading = true,
   }) : super(key: key);
 
   @override
@@ -14,38 +16,33 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
+      automaticallyImplyLeading: automaticallyImplyLeading,
       title: Container(
-        decoration: BoxDecoration(
-          color: Colors.red[900],
-          shape: BoxShape.rectangle,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(20),
-          ),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        color: Colors.red[900],
+        child: Text(
+          title,
+          style: Theme.of(context)
+              .textTheme
+              .headline2!
+              .copyWith(color: Colors.white),
         ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
-        ),
-        child: Text(title,
-            style: Theme.of(context)
-                .textTheme
-                .headline2!
-                .copyWith(color: Colors.white)),
       ),
+      iconTheme: IconThemeData(color: Colors.red[900]),
       actions: [
         IconButton(
+          icon: const Icon(Icons.favorite),
           onPressed: () {
-            Navigator.of(context).pushNamed(WishlistScreen.routeName);
+            Navigator.pushNamed(
+              context,
+              '/wishlist',
+            );
           },
-          icon: const Icon(
-            Icons.favorite,
-            size: 25,
-          ),
         ),
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size(200, 50);
+  Size get preferredSize => const Size.fromHeight(50.0);
 }
