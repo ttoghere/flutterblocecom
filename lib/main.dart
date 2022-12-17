@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterblocecom/config/app_router.dart';
+import 'package:flutterblocecom/config/theme_data.dart';
 import 'package:flutterblocecom/firebase_options.dart';
 import 'package:flutterblocecom/screens/screens_shelf.dart';
 
@@ -17,11 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage(),
+      theme: theme(),
+      initialRoute: HomePage.routeName,
+      onGenerateRoute: AppRouter.onGenerateRoute,
     );
   }
 }

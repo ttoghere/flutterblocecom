@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 ThemeData theme() {
   return ThemeData(
     scaffoldBackgroundColor: Colors.white,
+    iconTheme: IconThemeData(
+      color: Colors.red[900],
+      opacity: 0.8,
+    ),
     textTheme: textTheme(),
   );
 }
