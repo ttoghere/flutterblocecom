@@ -1,23 +1,56 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:flutterblocecom/model/models_shelf.dart';
+import 'package:flutterblocecom/screens/home_screen/widgets/widgets_shelf.dart';
 import 'package:flutterblocecom/screens/shared/shared_shelf.dart';
 
 class CatalogScreen extends StatelessWidget {
   static const routeName = "/catalogscreen";
-  static Route route() {
+  static Route route({required Category category}) {
     return MaterialPageRoute(
-        builder: (context) => const CatalogScreen(),
+        builder: (context) => CatalogScreen(category: category),
         settings: const RouteSettings(name: routeName));
   }
 
-  const CatalogScreen({Key? key}) : super(key: key);
+  final Category category;
+
+  const CatalogScreen({
+    Key? key,
+    required this.category,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    final categoryProducts =
+        Product.products.where((product) => product.category == category.name).toList();
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: "Home Page",
+      appBar: CustomAppBar(
+        title: category.name,
       ),
       bottomNavigationBar: const CustomBottomAppbar(),
+      body: GridView.builder(
+        itemCount: categoryProducts.length,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 16,
+        ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 1.15,
+        ),
+        itemBuilder: (context, index) {
+          return Center(
+            child: ProductCard(
+              product: categoryProducts[index],
+              size: size,
+              widthFactor: 2.2,
+            ),
+          );
+        },
+      ),
     );
   }
 }
+//ProductCard(product: Product.products[0], size: size),
