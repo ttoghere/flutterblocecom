@@ -18,27 +18,49 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: const CustomAppBar(
         title: "Home Page",
       ),
       bottomNavigationBar: const CustomBottomAppbar(),
-      body: Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: 5.0,
-            vertical: 20.0,
-          ),
-          child: CarouselSlider(
-            options: CarouselOptions(
-              viewportFraction: 0.9,
-              enlargeStrategy: CenterPageEnlargeStrategy.height,
-              aspectRatio: 2.0,
-              enlargeCenterPage: true,
+      body: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(
+              horizontal: 5.0,
+              vertical: 20.0,
             ),
-            items: Category.categories
-                .map((category) => HeroCarouselCard(category: category))
-                .toList(),
-          )),
+            child: CarouselSlider(
+              options: CarouselOptions(
+                viewportFraction: 0.9,
+                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                aspectRatio: 2.0,
+                enlargeCenterPage: true,
+              ),
+              items: Category.categories
+                  .map((category) => HeroCarouselCard(category: category))
+                  .toList(),
+            ),
+          ),
+          const SectionTitle(
+            title: "Recommended",
+          ),
+          ProductCarousel(
+              size: size,
+              products: Product.products
+                  .where((element) => element.isRecommended)
+                  .toList()),
+          const SectionTitle(
+            title: "Popular",
+          ),
+          ProductCarousel(
+              size: size,
+              products: Product.products
+                  .where((element) => element.isPopular)
+                  .toList()),
+        ],
+      ),
     );
   }
 }
