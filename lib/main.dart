@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterblocecom/blocs/wishlist_bloc/wishlist_bloc.dart';
 import 'package:flutterblocecom/config/app_router.dart';
 import 'package:flutterblocecom/config/theme_data.dart';
 import 'package:flutterblocecom/firebase_options.dart';
@@ -18,12 +20,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: theme(),
-      initialRoute: HomePage.routeName,
-      onGenerateRoute: AppRouter.onGenerateRoute,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => WishlistBloc()..add(StartWishlist())),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: theme(),
+        initialRoute: HomePage.routeName,
+        onGenerateRoute: AppRouter.onGenerateRoute,
+      ),
     );
   }
 }

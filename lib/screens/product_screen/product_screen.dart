@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterblocecom/blocs/wishlist_bloc/wishlist_bloc.dart';
 
 import 'package:flutterblocecom/model/product.dart';
 import 'package:flutterblocecom/screens/home_screen/widgets/widgets_shelf.dart';
@@ -49,12 +51,23 @@ class ProductScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline3,
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite,
-                  color: Colors.white,
-                ),
+              BlocBuilder<WishlistBloc, WishlistState>(
+                builder: (context, state) {
+                  return IconButton(
+                    onPressed: () {
+                      context
+                          .read<WishlistBloc>()
+                          .add(AddWishlistProduct(product));
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Added to your wishlist")));
+                    },
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -159,23 +172,3 @@ class ProductScreen extends StatelessWidget {
     );
   }
 }
-
-/**
- 
-HeroCarouselCard(
-        product: product,
-      ),
-
- CarouselSlider(
-              options: CarouselOptions(
-                viewportFraction: 0.9,
-                enlargeStrategy: CenterPageEnlargeStrategy.height,
-                aspectRatio: 2.0,
-                enlargeCenterPage: true,
-              ),
-              items: Category.categories
-                  .map((category) => HeroCarouselCard(category: category))
-                  .toList(),
-            ),
-
- */

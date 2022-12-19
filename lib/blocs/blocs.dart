@@ -1,0 +1,1 @@
+export './wishlist_bloc/wishlist_bloc.dart';
