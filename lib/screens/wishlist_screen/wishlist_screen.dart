@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterblocecom/model/product.dart';
+import 'package:flutterblocecom/screens/home_screen/widgets/widgets_shelf.dart';
 import 'package:flutterblocecom/screens/shared/shared_shelf.dart';
 
 class WishlistScreen extends StatelessWidget {
@@ -13,11 +15,32 @@ class WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: const CustomAppBar(
-        title: "Home Page",
+        title: "Wishlist",
       ),
       bottomNavigationBar: const CustomBottomAppbar(),
+      body: GridView.builder(
+        itemCount: Product.products.length,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 3,
+          vertical: 16,
+        ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+          childAspectRatio: 2.2,
+        ),
+        itemBuilder: (context, index) {
+          return ProductCard(
+            product: Product.products[index],
+            size: size,
+            widthFactor: 1.5,
+            leftPosition: 120,
+            isWishList: true,
+          );
+        },
+      ),
     );
   }
 }

@@ -5,11 +5,15 @@ import 'package:flutterblocecom/screens/product_screen/product_screen.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final double widthFactor;
+  final double leftPosition;
   final Size size;
+  final bool isWishList;
   const ProductCard({
     Key? key,
     required this.product,
+    this.isWishList = false,
     required this.size,
+    this.leftPosition = 5,
     this.widthFactor = 2.5,
   }) : super(key: key);
 
@@ -26,7 +30,7 @@ class ProductCard extends StatelessWidget {
         child: Stack(
           children: [
             SizedBox(
-              width: size.width / 2.5,
+              width: size.width,
               height: 150,
               child: Image.network(
                 product.imageUrl,
@@ -35,8 +39,9 @@ class ProductCard extends StatelessWidget {
             ),
             Positioned(
               top: 60,
+              left: leftPosition,
               child: Container(
-                width: size.width / 2.5,
+                width: widthValue,
                 height: 80,
                 decoration: BoxDecoration(
                     color: Colors.red.withAlpha(50),
@@ -45,9 +50,9 @@ class ProductCard extends StatelessWidget {
             ),
             Positioned(
               top: 65,
-              left: 5,
+              left: leftPosition + 5,
               child: Container(
-                width: size.width / 2.5 - 10,
+                width: widthValue - 10,
                 height: 70,
                 decoration: BoxDecoration(
                   color: Colors.red[900],
@@ -88,9 +93,24 @@ class ProductCard extends StatelessWidget {
                         flex: 1,
                         child: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.add_circle),
+                          icon: const Icon(
+                            Icons.add_circle,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
+                      isWishList
+                          ? Expanded(
+                              flex: 1,
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.remove_circle,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          : const SizedBox(),
                     ],
                   ),
                 ),

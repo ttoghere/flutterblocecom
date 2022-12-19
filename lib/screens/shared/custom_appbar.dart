@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutterblocecom/screens/wishlist_screen/wishlist_screen.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
@@ -35,7 +36,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           onPressed: () {
             Navigator.pushNamed(
               context,
-              '/wishlist',
+              WishlistScreen.routeName,
             );
           },
         ),

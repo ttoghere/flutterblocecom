@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterblocecom/model/models_shelf.dart';
 import 'package:flutterblocecom/screens/home_screen/widgets/widgets_shelf.dart';
 
-
 class ProductCarousel extends StatelessWidget {
   const ProductCarousel({
     Key? key,
@@ -15,7 +14,7 @@ class ProductCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 165,
+        height: 170,
         child: ListView.builder(
           padding: const EdgeInsets.symmetric(
             vertical: 10,
@@ -30,6 +29,7 @@ class ProductCarousel extends StatelessWidget {
               child: ProductCard(
                 product: products[index],
                 size: size,
+                widthFactor: 2.3,
               ),
             );
           },
