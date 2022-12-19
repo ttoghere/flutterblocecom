@@ -1,4 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:flutterblocecom/model/models_shelf.dart';
+import 'package:flutterblocecom/screens/cart_screen/widgets/widgets_shelf.dart';
+import 'package:flutterblocecom/screens/home_screen/home_screen.dart';
 import 'package:flutterblocecom/screens/shared/shared_shelf.dart';
 
 class CartScreen extends StatelessWidget {
@@ -15,9 +20,89 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-        title: "Cart Screen",
+        title: "Cart",
       ),
       bottomNavigationBar: const CustomBottomAppbar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 10,
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Add \$20.0 for free delivery",
+                    style: Theme.of(context).textTheme.headline5),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(HomePage.routeName);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red[900],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text(
+                    "Add More Items",
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                          color: Colors.white,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+            CardProductCard(
+              product: Product.products[0],
+            ),
+            CardProductCard(
+              product: Product.products[2],
+            ),
+            const Divider(
+              thickness: 2,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "SUBTOTAL: ",
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      Text(
+                        "\$5.98",
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "DELIVERY FEE: ",
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      Text(
+                        "\$5.98",
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

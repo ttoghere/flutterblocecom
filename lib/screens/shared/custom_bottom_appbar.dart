@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterblocecom/screens/cart_screen/cart_screen.dart';
 
 class CustomBottomAppbar extends StatelessWidget {
   const CustomBottomAppbar({
@@ -20,7 +21,9 @@ class CustomBottomAppbar extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
               icon: const Icon(Icons.shopping_cart_outlined),
             ),
             IconButton(
