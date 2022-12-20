@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterblocecom/blocs/cart_bloc/cart_bloc.dart';
 import 'package:flutterblocecom/blocs/wishlist_bloc/wishlist_bloc.dart';
 import 'package:flutterblocecom/config/app_router.dart';
 import 'package:flutterblocecom/config/theme_data.dart';
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => WishlistBloc()..add(StartWishlist())),
+        BlocProvider(
+            create: (context) => CartBloc()..add(CartProductStarted())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

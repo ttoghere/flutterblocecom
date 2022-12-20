@@ -12,7 +12,7 @@ class StartWishlist extends WishlistEvent {}
 
 class AddWishlistProduct extends WishlistEvent {
   final Product product;
-  AddWishlistProduct(
+  const AddWishlistProduct(
     this.product,
   );
 
@@ -22,7 +22,7 @@ class AddWishlistProduct extends WishlistEvent {
 
 class RemoveWishlistProduct extends WishlistEvent {
   final Product product;
-  RemoveWishlistProduct(
+  const RemoveWishlistProduct(
     this.product,
   );
 

@@ -9,7 +9,7 @@ part 'wishlist_state.dart';
 
 class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   WishlistBloc() : super(WishListLoading());
-  @override
+
   Stream<WishlistState> mapEventToState(WishlistEvent event) async* {
     if (event is StartWishlist) {
       yield* _mapStartWishlistToState();
@@ -24,7 +24,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
     yield WishListLoading();
     try {
       await Future<void>.delayed(const Duration(seconds: 1));
-      yield WishListLoaded();
+      yield const WishListLoaded();
     } catch (error) {
       log(error.toString());
     }

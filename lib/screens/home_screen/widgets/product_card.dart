@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterblocecom/blocs/cart_bloc/cart_bloc.dart';
 import 'package:flutterblocecom/model/models_shelf.dart';
 import 'package:flutterblocecom/screens/product_screen/product_screen.dart';
 
@@ -38,8 +40,8 @@ class ProductCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 60,
-              left: leftPosition,
+              top: 59,
+              left: leftPosition + 2,
               child: Container(
                 width: widthValue,
                 height: 80,
@@ -49,8 +51,8 @@ class ProductCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 65,
-              left: leftPosition + 5,
+              top: 63,
+              left: leftPosition + 7,
               child: Container(
                 width: widthValue - 10,
                 height: 70,
@@ -89,15 +91,32 @@ class ProductCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.add_circle,
-                            color: Colors.white,
-                          ),
-                        ),
+                      BlocBuilder<CartBloc, CartState>(
+                        builder: (context, state) {
+                          if (state is CartLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          if (state is CartLoaded) {
+                            return Expanded(
+                              flex: 1,
+                              child: IconButton(
+                                onPressed: () {
+                                  context
+                                      .read<CartBloc>()
+                                      .add(CartProductAdded(product));
+                                },
+                                icon: const Icon(
+                                  Icons.add_circle,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          } else {
+                            return Text("Something Went wrong");
+                          }
+                        },
                       ),
                       isWishList
                           ? Expanded(

@@ -8,7 +8,7 @@ class Product extends Equatable {
   final double price;
   final bool isRecommended;
   final bool isPopular;
-  Product({
+  const Product({
     required this.name,
     required this.category,
     required this.imageUrl,
@@ -18,11 +18,10 @@ class Product extends Equatable {
   });
 
   @override
-  // TODO: implement props
   List<Object?> get props =>
       [name, category, imageUrl, price, isPopular, isRecommended];
 
-  static List<Product> products = [
+  static List<Product> products = const [
     Product(
       name: 'Smoothies #1',
       category: 'Smoothies',
@@ -69,4 +68,5 @@ class Product extends Equatable {
       isPopular: true,
     ),
   ];
+
 }

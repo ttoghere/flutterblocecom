@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterblocecom/blocs/wishlist_bloc/wishlist_bloc.dart';
-import 'package:flutterblocecom/model/product.dart';
 import 'package:flutterblocecom/screens/home_screen/widgets/widgets_shelf.dart';
 import 'package:flutterblocecom/screens/shared/shared_shelf.dart';
 
@@ -51,7 +50,7 @@ class WishlistScreen extends StatelessWidget {
               },
             );
           } else {
-            return Center(
+            return const Center(
               child: Text("Something is wrong"),
             );
           }

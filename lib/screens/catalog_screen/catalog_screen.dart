@@ -40,7 +40,7 @@ class CatalogScreen extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 10,
-          childAspectRatio: 1.3,
+          childAspectRatio: 1.33,
         ),
         itemBuilder: (context, index) {
           return Center(

@@ -2,9 +2,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutterblocecom/blocs/cart_bloc/cart_bloc.dart';
 import 'package:flutterblocecom/blocs/wishlist_bloc/wishlist_bloc.dart';
 
 import 'package:flutterblocecom/model/product.dart';
+import 'package:flutterblocecom/screens/cart_screen/cart_screen.dart';
 import 'package:flutterblocecom/screens/home_screen/widgets/widgets_shelf.dart';
 import 'package:flutterblocecom/screens/shared/shared_shelf.dart';
 
@@ -43,13 +45,20 @@ class ProductScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(primary: Colors.white),
-                child: Text(
-                  "Add To Cart",
-                  style: Theme.of(context).textTheme.headline3,
-                ),
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      context.read<CartBloc>().add(CartProductAdded(product));
+                      Navigator.of(context).pushNamed(CartScreen.routeName);
+                    },
+                    style: ElevatedButton.styleFrom(primary: Colors.white),
+                    child: Text(
+                      "Add To Cart",
+                      style: Theme.of(context).textTheme.headline3,
+                    ),
+                  );
+                },
               ),
               BlocBuilder<WishlistBloc, WishlistState>(
                 builder: (context, state) {
@@ -59,8 +68,8 @@ class ProductScreen extends StatelessWidget {
                           .read<WishlistBloc>()
                           .add(AddWishlistProduct(product));
                       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Added to your wishlist")));
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Added to your wishlist")));
                     },
                     icon: const Icon(
                       Icons.favorite,
@@ -139,7 +148,7 @@ class ProductScreen extends StatelessWidget {
               children: [
                 ListTile(
                   title: Text(
-                    "Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni",
+                    "Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni",
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 )
@@ -160,7 +169,7 @@ class ProductScreen extends StatelessWidget {
               children: [
                 ListTile(
                   title: Text(
-                    "Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni -- Tanıtım Metni",
+                    "Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni -- Tanitim Metni",
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 )
