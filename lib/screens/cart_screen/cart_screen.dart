@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterblocecom/blocs/cart_bloc/cart_bloc.dart';
-import 'package:flutterblocecom/model/models_shelf.dart';
 import 'package:flutterblocecom/screens/cart_screen/widgets/widgets_shelf.dart';
 import 'package:flutterblocecom/screens/home_screen/home_screen.dart';
 import 'package:flutterblocecom/screens/shared/shared_shelf.dart';
@@ -19,7 +18,6 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Cart cart = Cart();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: const CustomAppBar(

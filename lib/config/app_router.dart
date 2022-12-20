@@ -19,6 +19,8 @@ class AppRouter {
         return ProductScreen.route(product: settings.arguments as Product);
       case WishlistScreen.routeName:
         return WishlistScreen.route();
+      case SplashScreen.routeName:
+        return SplashScreen.route();
       default:
         return errorRoute();
     }

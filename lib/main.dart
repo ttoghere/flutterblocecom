@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: theme(),
-        initialRoute: HomePage.routeName,
+        initialRoute: SplashScreen.routeName,
         onGenerateRoute: AppRouter.onGenerateRoute,
       ),
     );

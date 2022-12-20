@@ -25,7 +25,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     yield CartLoading();
     try {
       await Future<void>.delayed(const Duration(seconds: 1));
-      yield CartLoaded();
+      yield const CartLoaded();
     } catch (error) {
       log(error.toString());
     }

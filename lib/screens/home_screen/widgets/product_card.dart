@@ -114,7 +114,7 @@ class ProductCard extends StatelessWidget {
                               ),
                             );
                           } else {
-                            return Text("Something Went wrong");
+                            return const Text("Something Went wrong");
                           }
                         },
                       ),
