@@ -103,9 +103,20 @@ class CartScreen extends StatelessWidget {
                         child: ListView.builder(
                           itemBuilder: (context, index) {
                             return CardProductCard(
-                                product: state.cart.products[index]);
+                              product: state.cart
+                                  .productQuantity(state.cart.products)
+                                  .keys
+                                  .elementAt(index),
+                              quantity: state.cart
+                                  .productQuantity(state.cart.products)
+                                  .values
+                                  .elementAt(index),
+                            );
                           },
-                          itemCount: state.cart.products.length,
+                          itemCount: state.cart
+                              .productQuantity(state.cart.products)
+                              .keys
+                              .length,
                         ),
                       ),
                     ],

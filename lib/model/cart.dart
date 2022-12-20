@@ -29,6 +29,18 @@ class Cart extends Equatable {
     }
   }
 
+  Map productQuantity(List<Product> products) {
+    var quantity = Map();
+    products.forEach((product) {
+      if (!quantity.containsKey(product)) {
+        quantity[product] = 1;
+      } else {
+        quantity[product] += 1;
+      }
+    });
+    return quantity;
+  }
+
   String get totalString => total(subTotal, deliveryFee).toStringAsFixed(2);
   String get freeDeliveryString => freeDelivery(subTotal);
   String get subTotalString => subTotal.toStringAsFixed(2);

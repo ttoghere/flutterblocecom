@@ -7,12 +7,14 @@ import 'package:flutterblocecom/config/app_router.dart';
 import 'package:flutterblocecom/config/theme_data.dart';
 import 'package:flutterblocecom/firebase_options.dart';
 import 'package:flutterblocecom/screens/screens_shelf.dart';
+import 'package:flutterblocecom/simple_bloc_observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 
