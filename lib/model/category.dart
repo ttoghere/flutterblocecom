@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class Category extends Equatable {
@@ -14,6 +15,12 @@ class Category extends Equatable {
         name,
         imageUrl,
       ];
+
+  static Category fromSnapshot(DocumentSnapshot snapshot) {
+    Category category =
+        Category(name: snapshot["name"], imageUrl: snapshot["image_url"]);
+    return category;
+  }
 
   static List<Category> categories = const [
     Category(

@@ -30,14 +30,14 @@ class Cart extends Equatable {
   }
 
   Map productQuantity(List<Product> products) {
-    var quantity = Map();
-    products.forEach((product) {
+    var quantity = {};
+    for (var product in products) {
       if (!quantity.containsKey(product)) {
         quantity[product] = 1;
       } else {
         quantity[product] += 1;
       }
-    });
+    }
     return quantity;
   }
 
